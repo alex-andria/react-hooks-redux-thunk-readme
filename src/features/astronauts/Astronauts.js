@@ -6,6 +6,8 @@ function Astronauts() {
   const dispatch = useDispatch();
 
   const astronauts = useSelector((state) => state.astronauts.entities);
+  //alex code for load state
+  const loading = useSelector((state) => state.astronauts.status);
 
   function handleClick() {
     // dispatch the action creator (see below!)
@@ -13,15 +15,20 @@ function Astronauts() {
   }
 
   const astronautsList = astronauts.map((astro) => (
-    <li key={astro.id}>{astro.name}</li>
+    <li key={astro.name}>{astro.name}</li>
   ));
 
   return (
-    <div>
-      <button onClick={handleClick}>Get Astronauts</button>
-      {astronautsList}
-    </div>
-  );
+    <>
+      <div>
+        <button onClick={handleClick}>Get Astronauts</button>
+        {astronautsList}
+      </div>
+      <div>
+        <p>status: {loading}</p>
+      </div>
+    </>
+  )
 }
 
 export default Astronauts;
